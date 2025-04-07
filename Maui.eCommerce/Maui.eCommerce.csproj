@@ -67,6 +67,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\InventoryManagementView.xaml.cs">
+	    <DependentUpon>InventoryManagementView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CheckoutView.xaml.cs">
+	    <DependentUpon>CheckoutView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ShoppingManagementView.xaml.cs">
 	    <DependentUpon>ShoppingManagementView.xaml</DependentUpon>
 	  </Compile>
@@ -74,6 +80,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\InventoryManagementView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CheckoutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ShoppingManagementView.xaml">
