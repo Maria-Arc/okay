@@ -1,5 +1,5 @@
 ﻿using Library.eCommerce.Services;
-using Spring2025_Samples.Models;
+using Library.eCommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,35 +10,79 @@ namespace Maui.eCommerce.ViewModels
 {
     public class ProductViewModel
     {
-        public string? Name { 
+        private Item? cachedModel { get; set; }
+        public string? Name
+        {
             get
             {
-                return Model?.Name ?? string.Empty;
+                return Model?.Product?.Name ?? string.Empty;
             }
-
             set
             {
-                if(Model != null && Model.Name != value)
+                if (Model != null && Model.Product?.Name != value)
                 {
-                    Model.Name = value;
+                    Model.Product.Name = value;
                 }
             }
         }
 
-        public Product? Model { get; set; }
+        public int? Quantity
+        {
+            get
+            {
+                return Model?.Quantity;
+            }
+            set
+            {
+                if (Model != null && Model.Quantity != value)
+                {
+                    Model.Quantity = value;
+                }
+            }
+        }
+
+        public double? Price
+        {
+            get
+            {
+                return Model?.Cost;
+            }
+            set
+            {
+                if (Model != null && Model.Cost != value)
+                {
+                    Model.Cost = (double)value;
+                }
+            }
+        }
+
+
+        public Item? Model { get; set; }
 
         public void AddOrUpdate()
         {
             ProductServiceProxy.Current.AddOrUpdate(Model);
         }
 
-        public ProductViewModel() {
-            Model = new Product();
-        }
-
-        public ProductViewModel(Product? model)
+        public ProductViewModel()
         {
-            Model = model;
+            Model = new Item();
+            cachedModel = null;
+        }
+        public void Undo()
+        {
+            ProductServiceProxy.Current.AddOrUpdate(cachedModel);
+        }
+        public ProductViewModel(Item? model)
+        {
+            Model = model;//conversion constructor
+            if (model != null)
+            {
+                cachedModel = new Item(model);
+            }
+
         }
     }
+
+
 }
