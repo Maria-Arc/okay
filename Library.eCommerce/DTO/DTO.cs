@@ -29,11 +29,11 @@ namespace Library.eCommerce.DTO
             Name = string.Empty;
         }
 
-        public ProductDTO(Product p)
-        {
-            Name = p.Name;
-            Id = p.Id;
-        }
+  //      public ProductDTO(Product p)
+    //    {
+      //      Name = p.Name;
+        //    Id = p.Id;
+        //}
         public ProductDTO(ProductDTO p)
         {
             Name = p.Name;

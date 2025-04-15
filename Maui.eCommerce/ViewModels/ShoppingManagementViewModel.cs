@@ -18,13 +18,35 @@ namespace Maui.eCommerce.ViewModels
         private ShoppingCartService _cartSvc = ShoppingCartService.Current;
         public ItemViewModel? SelectedItem { get; set; }
 
+        //public string Sort { get; set; }
+        private bool Sort { get; set; }
         public ItemViewModel? SelectedCartItem { get; set; }
+
+        public void NameSort()
+        {
+            Sort = true;
+            RefreshUX();
+        }
+        public void PSort()
+        {
+            Sort = false;
+            RefreshUX();
+        }
         public ObservableCollection<ItemViewModel?> Inventory
         {
             get
             {
-                return new ObservableCollection<ItemViewModel?>(_invSvc.Products.Where(i=>i?.Quantity>0).Select(m => new ItemViewModel(m))
-                    );
+                //return new ObservableCollection<ItemViewModel?>(_invSvc.Products.Where(i=>i?.Quantity>0).Select(m => new ItemViewModel(m))
+                //  );
+                ObservableCollection<ItemViewModel?> filteredList;
+                 if (Sort) //true - name
+                    filteredList =  new ObservableCollection<ItemViewModel?>(_invSvc.Products.Where(i => i?.Quantity > 0).OrderBy(i => i?.Product?.Name).Select(m => new ItemViewModel(m))
+                   );
+                else //false = price
+                 filteredList = new ObservableCollection<ItemViewModel?>(_invSvc.Products.Where(i => i?.Quantity > 0).OrderBy(i => i?.Product?.Price).Select(m => new ItemViewModel(m))
+                  );
+
+                return filteredList;
             }
         }
 
@@ -32,8 +54,17 @@ namespace Maui.eCommerce.ViewModels
         {
             get
             {
-                return new ObservableCollection<ItemViewModel?>(_cartSvc.CartItems.Where(i => i?.Quantity > 0).Select(m=>new ItemViewModel(m))
-                    );
+                //return new ObservableCollection<ItemViewModel?>(_cartSvc.CartItems.Where(i => i?.Quantity > 0).Select(m=>new ItemViewModel(m))
+                //  );
+                ObservableCollection<ItemViewModel?> filteredList;
+                if (Sort) //true - name
+                    filteredList = new ObservableCollection<ItemViewModel?>(_cartSvc.CartItems.Where(i => i?.Quantity > 0).OrderBy(i => i?.Product?.Name).Select(m => new ItemViewModel(m))
+                   );
+                else //false = price
+                    filteredList = new ObservableCollection<ItemViewModel?>(_cartSvc.CartItems.Where(i => i?.Quantity > 0).OrderBy(i => i?.Product?.Price).Select(m => new ItemViewModel(m))
+                     );
+
+                return filteredList;
             }
         }
 
@@ -50,8 +81,10 @@ namespace Maui.eCommerce.ViewModels
 
         public void RefreshUX()
         {
-            NotifyPropertyChanged(nameof(Inventory));
-            NotifyPropertyChanged(nameof(ShoppingCart));
+ 
+                NotifyPropertyChanged(nameof(Inventory));
+                NotifyPropertyChanged(nameof(ShoppingCart));
+          
         }
         public void PurchaseItem()
         {

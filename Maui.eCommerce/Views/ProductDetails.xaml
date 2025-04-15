@@ -21,7 +21,7 @@
             Text="{Binding Price}"
             />
         <Label 
-            Text="Quanitity:"
+            Text="Quantity:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Entry

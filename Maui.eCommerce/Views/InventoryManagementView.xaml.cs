@@ -1,5 +1,6 @@
 using Library.eCommerce.Services;
 using Maui.eCommerce.ViewModels;
+//using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 
 namespace Maui.eCommerce.Views;
 
@@ -40,5 +41,20 @@ public partial class InventoryManagementView : ContentPage
     private void SearchClicked(object sender, EventArgs e)
     {
         (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
+    }
+
+
+    //lowk just set Sort t
+    private void SortToggled(object sender, ToggledEventArgs e)
+    {
+        if (e.Value) //true
+        {
+            (BindingContext as InventoryManagementViewModel)?.NameSort();
+            (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
+        }
+        else         {
+            (BindingContext as InventoryManagementViewModel)?.PSort();
+            (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
+         }   
     }
 }

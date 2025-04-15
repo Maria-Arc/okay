@@ -29,7 +29,29 @@ public partial class ShoppingManagementView : ContentPage
 
     private void InLineAddClicked(object sender, EventArgs e)
     {
-        (BindingContext as ShoppingManagementViewModel)?.RefreshUX();
+        //for ()
 
+        
+        (BindingContext as ShoppingManagementViewModel)?.RefreshUX();
+        
+    }
+
+    private void InLineDeleteClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ShoppingManagementViewModel)?.RefreshUX();
+    }
+
+    private void SortToggled(object sender, ToggledEventArgs e)
+    {
+        if (e.Value) //true
+        {
+            (BindingContext as ShoppingManagementViewModel)?.NameSort();
+
+        }
+        else
+        {
+            (BindingContext as ShoppingManagementViewModel)?.PSort();
+           
+        }
     }
 }

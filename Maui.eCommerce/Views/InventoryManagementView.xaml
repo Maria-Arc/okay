@@ -10,9 +10,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Entry Text="{Binding Query}" Grid.Column="0"/>
-            <Button Text="Search" Grid.Column="1" Clicked="SearchClicked"/>
+            <Button Text="Search" Grid.Column="2" Clicked="SearchClicked"/>
+            <Switch Grid.Column="1" IsToggled="False"  
+            Toggled= "SortToggled" />
+            
         </Grid>
         <ListView
             ItemsSource="{Binding Path=Products}"

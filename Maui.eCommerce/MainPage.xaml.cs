@@ -4,7 +4,6 @@ namespace Maui.eCommerce
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
@@ -25,6 +24,11 @@ namespace Maui.eCommerce
         private void CheckoutClicked(object sender, EventArgs e)
         {
             Shell.Current.GoToAsync("//Checkout");
+        }
+
+        private void TaxClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//TaxManagement");
         }
     }
 }

@@ -15,6 +15,8 @@ namespace Maui.eCommerce.ViewModels
     {
         private ShoppingCartService _cartSvc = ShoppingCartService.Current;
 
+        public decimal Taxed { get { return (decimal)_cartSvc.Tax / 100; } }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -37,7 +39,12 @@ namespace Maui.eCommerce.ViewModels
         {
             get
             {
-                return $"Total: {ShoppingCart.Select(item => (item?.Model?.Quantity ?? 0) * (item?.Model?.Product?.Price ?? 0) * 1.07M).Sum():C}";
+                return $"Total: {ShoppingCart.Select(item =>
+                        (item?.Model?.Quantity ?? 0)
+                        * (item?.Model?.Product?.Price ?? 0)
+                        * (1 + ((decimal)_cartSvc.Tax / 100))
+                    ).Sum():C}";
+
             }//going through stuff in shopping cart (create temp list) calc the price and sums
         }
         public void RefreshProductList()

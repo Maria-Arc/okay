@@ -28,4 +28,9 @@
        Title="Checkout"
        ContentTemplate="{DataTemplate views:CheckoutView}"
        Route="Checkout" />
+    <ShellContent
+       Title="Tax"
+       ContentTemplate="{DataTemplate views:TaxManagementView}"
+       Route="TaxManagement" />
+
 </Shell>
