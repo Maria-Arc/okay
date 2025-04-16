@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 using Library.eCommerce.Models;
 
 
+//dropdown to select cart (CRUD for carts), + new one, right side updates
+//button ar bottom to checkout
+//model or whatev to contain shopping cart, shoppingcartservice is a list of this (like selected item)
+//selectedcarts.cartItems
+
+
 namespace Library.eCommerce.Services
 {
     public class ShoppingCartService

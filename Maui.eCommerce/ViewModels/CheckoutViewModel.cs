@@ -51,6 +51,7 @@ namespace Maui.eCommerce.ViewModels
         {
             NotifyPropertyChanged(nameof(TotalDisplay));
             NotifyPropertyChanged(nameof(ShoppingCart));
+            NotifyPropertyChanged(nameof(Taxed));
         }
     }
 }

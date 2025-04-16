@@ -19,9 +19,7 @@ namespace Library.eCommerce.Services
 
         private ProductServiceProxy()
         {
-            //var productPayload = WebRequestHandler().Get("\\Inventory");
-            //Products = new List<Item?>();
-            //Products = JsonConvert.DeserializeObject<List<Item>>(productPayload) ?? new List<Item?>();
+  
 
             Products = new List<Item?>
             {

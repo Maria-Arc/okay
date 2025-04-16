@@ -30,7 +30,7 @@
 </Grid>
 
         <Entry
-        Text="{Binding Taxed}"  HorizontalOptions="Center" VerticalOptions="Center" 
+        Text="{Binding TempTaxed}"  HorizontalOptions="Center" VerticalOptions="Center" 
         />
         <Button Text="Ok" Clicked="OkClicked"/>
         <Button Text="Go Back" Clicked="GoBackClicked"/>

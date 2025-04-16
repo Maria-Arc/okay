@@ -12,8 +12,13 @@ public partial class TaxManagementView : ContentPage
 
     private void OkClicked(object sender, EventArgs e)
     {
-        (BindingContext as TaxManagementViewModel)?.RefreshUX();
+        //(BindingContext as TaxManagementViewModel)?.RefreshUX();
+        //(BindingContext as TaxManagementViewModel)?.SaveTax();
+        //Shell.Current.GoToAsync("//MainPage");
+
+        (BindingContext as TaxManagementViewModel)?.SaveTax();
         Shell.Current.GoToAsync("//MainPage");
+
     }
 
     private void GoBackClicked(object sender, EventArgs e)
@@ -24,7 +29,7 @@ public partial class TaxManagementView : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        (BindingContext as TaxManagementViewModel)?.RefreshUX();
+        (BindingContext as TaxManagementViewModel).RefreshUX();
     }
 
 }
