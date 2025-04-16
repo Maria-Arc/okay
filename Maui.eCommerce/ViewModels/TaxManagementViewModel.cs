@@ -15,39 +15,53 @@ namespace Maui.eCommerce.ViewModels
 {
     public class TaxManagementViewModel : INotifyPropertyChanged
     {
-
         private ShoppingCartService _cartSvc = ShoppingCartService.Current;
-        public decimal Taxed { get { return _cartSvc.Tax; } set { _cartSvc.Tax = value; } }
 
+        private decimal cachedTax { get; set; }
 
-        private decimal taxPercentage
+        public TaxManagementViewModel()
         {
-            get      
+            cachedTax = _cartSvc.Tax;
+        }
+
+        public decimal Taxed
+        {
+            get => _cartSvc.Tax;
+            set
             {
-                return Taxed / 100;
+                if (_cartSvc.Tax != value)
+                {
+                    _cartSvc.Tax = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
-   
+        private decimal taxPercentage => Taxed / 100;
+
+        public void Undo()
+        {
+            Taxed = cachedTax;
+        }
+
+        public void SaveTax()
+        {
+            cachedTax = Taxed;
+        }
+
+        public void RefreshUX()
+        {
+            NotifyPropertyChanged(nameof(Taxed));
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (propertyName is null)
-            {
                 throw new ArgumentNullException(nameof(propertyName));
-            }
-            PropertyChanged?.Invoke(sender: this, new PropertyChangedEventArgs(propertyName));
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public void RefreshUX()
-        {
-
-            NotifyPropertyChanged(nameof(Taxed));
-
-        }
-
-
     }
 }

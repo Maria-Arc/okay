@@ -1,4 +1,5 @@
 using Maui.eCommerce.ViewModels;
+
 namespace Maui.eCommerce.Views;
 
 public partial class TaxManagementView : ContentPage
@@ -17,6 +18,7 @@ public partial class TaxManagementView : ContentPage
 
     private void GoBackClicked(object sender, EventArgs e)
     {
+        (BindingContext as TaxManagementViewModel)?.Undo();
         Shell.Current.GoToAsync("//MainPage");
     }
 

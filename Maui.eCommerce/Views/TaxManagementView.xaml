@@ -26,21 +26,9 @@
         HorizontalOptions="Start"
         Grid.Column="0" />
 
-    <Label 
-        Text="{Binding Taxed}" 
-        FontSize="18"
-        TextColor="Green"
-        FontAttributes="Bold"
-        VerticalOptions="Center"
-        HorizontalOptions="End"
-        Grid.Column="1" />
+
 </Grid>
 
-
-        <Label 
-        Text="New Tax Amount:"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
         <Entry
         Text="{Binding Taxed}"  HorizontalOptions="Center" VerticalOptions="Center" 
         />
