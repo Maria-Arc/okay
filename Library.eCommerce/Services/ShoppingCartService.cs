@@ -78,7 +78,7 @@ namespace Library.eCommerce.Services
                 return null;
             }
             var itemToReturn = CartItems.FirstOrDefault(c => c.Id == item.Id);
-            if (itemToReturn != null)
+            if (itemToReturn != null && (CartItems.FirstOrDefault(c => c.Id == item.Id)).Quantity>0)
             {
                 itemToReturn.Quantity--;
                 var inventoryItem = _prodSvc.Products.FirstOrDefault(p => p.Id == itemToReturn.Id);

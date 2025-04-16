@@ -25,7 +25,7 @@ namespace Maui.eCommerce.ViewModels
         public ICommand? DeleteCommand { get; set; }
         private void DoAdd()
         {
-            for (int i = 0; i < Query; i++)
+            for (int i = 0; i < Query ; i++)
             {
                 ShoppingCartService.Current.AddOrUpdate(Model);
             }
